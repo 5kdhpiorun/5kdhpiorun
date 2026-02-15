@@ -10,22 +10,18 @@
     <style>
         /* --- KONFIGURACJA GŁÓWNA --- */
         :root {
-            /* TU ZMIEŃ ZDJĘCIE GŁÓWNE (HERO):
-               Wklej nowy link pomiędzy nawiasy url('...'). 
-               Może to być link z internetu lub nazwa pliku z folderu (np. 'moje-zdjecie.jpg')
-            */
-            --hero-img: url('tlo.jpg');
+            /* PAMIĘTAJ O ZMIANIE LINKU DO ZDJĘCIA W TLE: */
+            --hero-img: url('tlo.jpg'); 
 
             /* --- KOLORYSTYKA (DARK MODE) --- */
-            --primary-color: #800e0e; /* Rozjaśniłem nieco bordowy, by był czytelniejszy na czarnym */
-            --primary-glow: #ff4d4d; /* Kolor akcentów/podświetleń */
+            --primary-color: #9e1b1b; 
             
-            --bg-body: #000000;      /* Głęboka czerń tła */
-            --bg-section: #121212;   /* Ciemny szary dla sekcji */
-            --bg-card: #1e1e1e;      /* Karty jaśniejsze od tła */
+            --bg-body: #000000;
+            --bg-section: #121212;
+            --bg-card: #1e1e1e;
             
-            --text-main: #e0e0e0;    /* Prawie biały tekst */
-            --text-muted: #a0a0a0;   /* Szary tekst */
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
         }
 
         /* --- RESET I BAZA --- */
@@ -53,7 +49,7 @@
 
         /* --- NAWIGACJA --- */
         .main-nav {
-            background-color: rgba(18, 18, 18, 0.95); /* Półprzezroczyste ciemne tło */
+            background-color: rgba(18, 18, 18, 0.95);
             border-bottom: 2px solid var(--primary-color);
             display: flex;
             justify-content: space-between;
@@ -84,7 +80,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             letter-spacing: 1px;
-            color: var(--primary-glow);
+            color: var(--primary-color);
         }
 
         .nav-links {
@@ -103,13 +99,12 @@
         }
 
         .nav-links a:hover {
-            color: var(--primary-glow);
+            color: var(--primary-color);
             text-decoration: none;
         }
 
-        /* --- HERO SECTION (ZDJĘCIE W TLE) --- */
+        /* --- HERO SECTION --- */
         .hero {
-            /* Tutaj wykorzystujemy zmienną zdefiniowaną na górze */
             background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), var(--hero-img);
             background-size: cover;
             background-position: center;
@@ -127,7 +122,7 @@
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            text-shadow: 0px 0px 20px rgba(128, 14, 14, 0.8); /* Bordowa poświata */
+            text-shadow: 0px 0px 20px rgba(158, 27, 27, 0.6);
             line-height: 1.2;
         }
 
@@ -150,13 +145,13 @@
             border-radius: 30px;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(128, 14, 14, 0.5);
+            box-shadow: 0 0 15px rgba(158, 27, 27, 0.4);
         }
 
         .hero-btn:hover {
             background-color: transparent;
-            color: var(--primary-glow);
-            border-color: var(--primary-glow);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
         /* --- SEKCJE OGÓLNE --- */
@@ -164,19 +159,18 @@
             padding: 70px 20px;
         }
 
-        /* Tła naprzemienne dla sekcji */
         section:nth-child(even) { background-color: var(--bg-section); }
         section:nth-child(odd) { background-color: var(--bg-body); }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px; /* Zwiększyłem nieco szerokość kontenera, żeby 4 kafle miały luźniej */
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
             font-size: 2.2rem;
-            color: var(--primary-glow);
+            color: var(--primary-color);
             margin-bottom: 40px;
             position: relative;
         }
@@ -190,7 +184,7 @@
             margin: 15px auto 0;
         }
 
-        /* --- O NAS --- */
+        /* --- O NAS & HARMONOGRAM (ZMIANY TUTAJ) --- */
         .about-content {
             text-align: center;
             font-size: 1.1rem;
@@ -201,39 +195,54 @@
 
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            /* WYMUSZAMY 4 KOLUMNY NA KOMPUTERZE */
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; /* Mniejszy odstęp między kafelkami */
             margin-top: 30px;
         }
 
         .schedule-card {
             background: var(--bg-card);
-            padding: 25px;
+            /* Mniejszy padding wewnątrz, żeby zmieścić tekst */
+            padding: 15px; 
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             text-align: center;
             border: 1px solid #333;
             border-top: 4px solid var(--primary-color);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
         }
 
         .schedule-card:hover {
             transform: translateY(-5px);
-            border-top-color: var(--primary-glow);
         }
 
-        .day-name {
-            font-size: 1.4rem;
+        .patrol-name {
+            font-size: 1.3rem; /* Nieco mniejsza czcionka nagłówka */
             font-weight: bold;
-            color: var(--primary-glow);
+            color: var(--primary-color);
             display: block;
             margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .meeting-time {
-            font-size: 1.1rem;
+            font-size: 1rem; /* Mniejsza czcionka godziny */
             font-weight: 600;
             color: white;
+            margin-bottom: 5px;
+        }
+
+        .meeting-place {
+            font-size: 0.85rem; /* Mniejsza czcionka miejsca */
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.3;
         }
 
         /* --- STATYSTYKI --- */
@@ -257,7 +266,7 @@
         .stat-item h3 {
             font-size: 2.5rem;
             margin-bottom: 5px;
-            color: var(--primary-glow);
+            color: var(--primary-color);
         }
 
         .stat-item p {
@@ -278,7 +287,7 @@
         }
 
         .gallery-item:hover {
-            border-color: var(--primary-glow);
+            border-color: var(--primary-color);
         }
 
         .gallery-item img {
@@ -286,12 +295,12 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.4s ease;
-            filter: brightness(0.8); /* Lekko przyciemnione zdjęcia, żeby nie raziły */
+            filter: brightness(0.8);
         }
 
         .gallery-item:hover img {
             transform: scale(1.1);
-            filter: brightness(1); /* Rozjaśnienie przy najechaniu */
+            filter: brightness(1);
         }
 
         /* --- LIGHTBOX --- */
@@ -318,14 +327,14 @@
             max-width: 95%;
             max-height: 90vh;
             border: 2px solid var(--primary-color);
-            box-shadow: 0 0 30px rgba(128, 14, 14, 0.3);
+            box-shadow: 0 0 30px rgba(158, 27, 27, 0.2);
         }
 
         .lightbox-close {
             position: absolute;
             top: 20px;
             right: 30px;
-            color: var(--primary-glow);
+            color: var(--primary-color);
             font-size: 3rem;
             cursor: pointer;
             line-height: 1;
@@ -373,7 +382,7 @@
 
         .staff-role {
             font-weight: 600;
-            color: var(--primary-glow);
+            color: var(--primary-color);
             text-transform: uppercase;
             font-size: 0.9rem;
             margin-bottom: 20px;
@@ -407,7 +416,7 @@
         }
 
         .staff-contact-row a:hover {
-            color: var(--primary-glow);
+            color: var(--primary-color);
         }
 
         /* --- AKTUALNOŚCI (FB) --- */
@@ -423,6 +432,20 @@
             border: 1px solid #333;
         }
         
+        .fb-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #1877f2;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .fb-btn:hover { background-color: #115dc7; }
+
         /* --- STOPKA --- */
         footer {
             background-color: #000;
@@ -441,7 +464,7 @@
         }
         
         iframe {
-            filter: grayscale(20%) invert(90%); /* Odwrócenie kolorów mapy na ciemne! */
+            filter: grayscale(20%) invert(90%);
         }
 
         .footer-bottom {
@@ -452,10 +475,24 @@
             font-size: 0.85rem;
         }
 
-        @media (max-width: 768px) {
+        /* --- MEDIA QUERIES (Responsywność) --- */
+        /* To bardzo ważne: Na telefonach chcemy, żeby kafelki były pod sobą, a nie 4 w rzędzie */
+        @media (max-width: 900px) {
+            .schedule-grid {
+                /* Na tabletach/mniejszych ekranach - 2 kolumny */
+                grid-template-columns: repeat(2, 1fr); 
+            }
+        }
+
+        @media (max-width: 600px) {
             .main-nav { flex-direction: column; padding: 1rem; }
             .nav-links { flex-wrap: wrap; justify-content: center; margin-top: 15px; }
             .hero h1 { font-size: 2rem; }
+            
+            .schedule-grid {
+                /* Na telefonach - 1 kolumna (kafelki pod sobą) */
+                grid-template-columns: 1fr; 
+            }
         }
     </style>
 </head>
@@ -463,8 +500,7 @@
 
     <nav class="main-nav">
         <a href="#" class="logo-container">
-            <img src="logo.png" 
-                 alt="Logo 5 KDH" class="logo-img">
+            <img src="logo.png" alt="Logo 5 KDH" class="logo-img">
             <span class="troop-short-name">5 KDH "PIORUN"</span>
         </a>
         <ul class="nav-links">
@@ -486,29 +522,42 @@
             <h2 class="section-title">O Naszej Drużynie</h2>
             <div class="about-content">
                 <p>
-                    Jesteśmy <strong>5 Krakowską Drużyną Harcerzy "Piorun"</strong>. Działamy aktywnie w dzielnicy <strong>Krowodrza Górka</strong>, kontynuując ponad 45-letnią tradycję harcerską w tym regionie.
-                    Naszym domem są szkoły im. św. Jadwigi Królowej oraz im. św. Joanny Beretty-Molli. 
-                    Jesteśmy zgraną wspólnotą liczącą <strong>4 prężne zastępy</strong>, gotową na każde wyzwanie.
+                    Jesteśmy <strong>5 Krakowską Drużyną Harcerzy "Piorun"</strong>. Działamy aktywnie w dzielnicy <strong>Prądnika Białego</strong>. Należymy do Związku Harcerstwa Rzeczypospolitej, a w ramach jego struktur, wchodzimy w skład Małopolskiej Chorągwi Harcerzy oraz Hufca Kraków-Krowodrza. Od ponad 45 lat, kształcimy młodzież w oparciu o harcerskie wartości oraz ideały.
+                   Zbiórki naszych zastępów odbywają się w szkołach: im. św. Jadwigi Królowej oraz im. św. Joanny Beretty-Molli. 
+                    Jesteśmy zgraną drużyną liczącą <strong>4 prężnie działające zastępy</strong>. Zbiórki drużyny odbywają się raz w miesiącu w ciekawych oraz rozwijających nasze zainteresowania oraz umiejętności formach. Zapraszamy do dołączenia w nasze szeregi!
                 </p>
             </div>
 
-            <h3 style="text-align: center; margin-bottom: 20px; color: var(--text-muted);">Kiedy i gdzie się spotykamy?</h3>
+            <h3 style="text-align: center; margin-bottom: 20px; color: var(--text-muted);">Zastępy i terminy zbiórek</h3>
+            
             <div class="schedule-grid">
                 <div class="schedule-card">
-                    <span class="day-name">Poniedziałek</span>
-                    <span class="meeting-time">15:00 – 16:30</span>
+                    <span class="patrol-name">🐆 Rysie</span>
+                    <span class="meeting-time">Piątek 18:00 – 19:30</span>
+                    <span class="meeting-place">KSP im. św. Joanny Beretty-Molli</span>
                 </div>
+                
                 <div class="schedule-card">
-                    <span class="day-name">Czwartek</span>
-                    <span class="meeting-time">17:00 – 18:30</span>
+                    <span class="patrol-name">🦊 Lisy</span>
+                    <span class="meeting-time">Czwartek 17:00 – 18:30</span>
+                    <span class="meeting-place">KSP im. św. Joanny Beretty-Molli</span>
                 </div>
+
                 <div class="schedule-card">
-                    <span class="day-name">Piątek</span>
-                    <span class="meeting-time">17:00 – 18:30</span>
+                    <span class="patrol-name">🦡 Rosomaki</span>
+                    <span class="meeting-time">Czwartek 17:00 – 18:30</span>
+                    <span class="meeting-place">KSP im. św. Joanny Beretty-Molli</span>
+                </div>
+
+                <div class="schedule-card">
+                    <span class="patrol-name">🪖 Komandosi</span>
+                    <span class="meeting-time">Poniedziałek 15:00 – 16:30</span>
+                    <span class="meeting-place">KSP im. św. Jadwigi Królowej</span>
                 </div>
             </div>
+            
             <p style="text-align: center; margin-top: 30px; font-style: italic; color: #666;">
-                Zbiórki odbywają się przy szkołach na Krowodrzy Górce oraz Bronowicach.
+                Zapraszamy na zbiórki wszystkich chłopaków od 5 klasy wzwyż!
             </p>
         </div>
     </section>
@@ -525,15 +574,15 @@
             </div>
              <div class="stat-item">
                 <h3>>45 lat</h3>
-                <p>Służby w Krakowie</p>
+                <p>Działania "Pioruna"</p>
             </div>
         </div>
     </section>
 
     <section id="galeria" class="section-padding gallery-section">
         <div class="container">
-            <h2 class="section-title">Galeria Drużyny</h2>
-            <p style="text-align: center; margin-bottom: 30px; color: var(--text-muted);">Wspomnienia z naszych ostatnich przygód.</p>
+            <h2 class="section-title">Galeria Zdjęć Drużyny</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-muted);">Wspomnienia z naszych ostatnich wyjazdów.</p>
             <div class="gallery-grid">
                 <div class="gallery-item"><img src="foto1.jpg" alt="Obraz 1"></div>
                 <div class="gallery-item"><img src="foto2.jpg" alt="Obraz 2"></div>
@@ -569,7 +618,7 @@
                     <div class="staff-contact-details">
                         <div class="staff-contact-row">
                             <span class="staff-contact-icon">📞</span>
-                            <a href="tel:735054431">736 054 531</a>
+                            <a href="tel:736054531">735 054 431</a>
                         </div>
                         <div class="staff-contact-row">
                             <span class="staff-contact-icon">✉️</span>
@@ -581,16 +630,16 @@
         </div>
     </section>
 
-   <footer>
+    <footer>
         <div class="footer-content">
             <div style="flex: 1; min-width: 300px;">
-                <h3 style="color: var(--primary-glow); margin-bottom: 20px;">Nasze Lokalizacje</h3>
+                <h3 style="color: var(--primary-color); margin-bottom: 20px;">Nasze Lokalizacje</h3>
                 
                 <div style="margin-bottom: 25px; padding-left: 15px; border-left: 3px solid var(--primary-color);">
                     <strong style="color: white; display:block; margin-bottom:5px; font-size: 1.1rem;">
                         1. SP im. św. Joanny Beretty Molli
                     </strong>
-                    <span style="color: var(--primary-glow); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+                    <span style="color: var(--primary-color); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
                         Główna Harcówka
                     </span><br>
                     ul. Stelmachów 137<br>
@@ -626,7 +675,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>© 2024 5 Krakowska Drużyna Harcerzy "Piorun". Czuwaj!</p>
+            <p>© 2025 5 Krakowska Drużyna Harcerzy "Piorun" im. Legionistów roku 1914 </p>
         </div>
     </footer>
 
