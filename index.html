@@ -3,32 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>5 KDH "Piorun" - Strona Oficjalna</title>
     
-    <link rel="icon" href="logo.png" type="image/png">
+    <!-- Meta tagi dla Google -->
+    <title>5 KDH „Piorun” - Strona Oficjalna | ZHR Kraków-Krowodrza</title>
+    <meta name="description" content="Oficjalna strona 5 Krakowskiej Drużyny Harcerzy Piorun im. Legionistów roku 1914. Kształcimy młodzież od ponad 45 lat w Krakowie na Krowodrzy.">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Open Graph / Meta tagi dla Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://krowodrza.zhr.pl/5kdh/">
+    <meta property="og:title" content="5 KDH Piorun - ZHR Kraków">
+    <meta property="og:description" content="Dołącz do 5 Krakowskiej Drużyny Harcerzy Piorun! Zbiórki, wyjazdy, przygoda i wychowanie w duchu harcerskim.">
+    <meta property="og:image" content="tlo.jpg">
+
+    <link rel="icon" href="logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- KONFIGURACJA GŁÓWNA --- */
         :root {
-            /* PAMIĘTAJ O ZMIANIE LINKU DO ZDJĘCIA W TLE: */
             --hero-img: url('tlo.jpg'); 
-
-            /* --- KOLORYSTYKA (DARK MODE) --- */
-            --primary-color: #9e1b1b; 
-            
-            --bg-body: #000000;
+            --primary-color: #8b0000; /* Matowy bordowy */
+            --primary-hover: #a10f0f;
+            --bg-body: #0a0a0a;
             --bg-section: #121212;
-            --bg-card: #1e1e1e;
-            
+            --bg-card: #1c1c1c;
+            --bg-card-hover: #222222;
             --text-main: #e0e0e0;
             --text-muted: #a0a0a0;
+            --shadow-3d: 0 10px 25px rgba(0, 0, 0, 0.7), 0 4px 10px rgba(0, 0, 0, 0.5);
+            --shadow-matte-hover: 0 12px 30px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(139, 0, 0, 0.2);
         }
 
-        /* --- RESET I BAZA --- */
+        /* --- RESET I BAZA TYPOGRAFICZNA --- */
         * {
             margin: 0;
             padding: 0;
@@ -44,25 +51,34 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
+        button {
+            font-family: inherit;
+        }
+
+        h1, h2, h3, h4, .troop-short-name, .section-title, .patrol-name, .team-meetings-title, 
+        .program-tab-btn, .staff-name, .stat-item h3, .scouts-card h3, .eproba-btn, .stamps-btn, 
+        .esongbook-btn, .staff-recruit-btn, .modal-content h3 {
+            font-family: 'Zilla Slab', serif;
             font-weight: 700;
+            font-variant-numeric: lining-nums tabular-nums;
         }
 
         /* --- NAWIGACJA --- */
         .main-nav {
-            background-color: rgba(18, 18, 18, 0.95);
+            background-color: rgba(14, 14, 14, 0.95);
             border-bottom: 2px solid var(--primary-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
+            padding: 0.9rem 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
         }
 
         .logo-container {
@@ -71,48 +87,77 @@
             gap: 15px;
             color: var(--text-main);
             text-decoration: none;
+            background: transparent;
         }
 
         .logo-img {
-            height: 50px;
+            height: 48px;
             width: auto;
-            border-radius: 5px;
-            border: 1px solid var(--primary-color);
+            border: none;
+            outline: none;
+            background: none;
+            box-shadow: none;
+            display: block;
         }
 
         .troop-short-name {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.4rem;
             letter-spacing: 1px;
             color: var(--primary-color);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
             color: var(--text-main);
             text-decoration: none;
+            font-family: 'Open Sans', sans-serif;
             font-weight: 600;
-            text-transform: uppercase;
             font-size: 0.85rem;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
-            text-decoration: none;
+            color: white;
+            background-color: rgba(139, 0, 0, 0.25);
+        }
+
+        .nav-links a.active-nav {
+            color: white;
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 8px rgba(139, 0, 0, 0.4);
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: #1c1c1c;
+            border: 1px solid var(--primary-color);
+            color: white;
+            font-size: 1.4rem;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .hamburger-btn:hover {
+            background: var(--primary-color);
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), var(--hero-img);
+            background-image: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(10,10,10,0.95) 100%), var(--hero-img);
             background-size: cover;
             background-position: center;
-            height: 90vh;
+            height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -120,51 +165,93 @@
             text-align: center;
             color: white;
             padding: 0 20px;
-            border-bottom: 4px solid var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 0px 0px 20px rgba(158, 27, 27, 0.6);
+            font-size: 3.2rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
             line-height: 1.2;
+            letter-spacing: 1px;
         }
 
         .hero h2 {
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
             max-width: 800px;
-            letter-spacing: 1px;
-            color: #ccc;
+            letter-spacing: 1.5px;
+            color: #ddd;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+        }
+
+        .hero-buttons-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
         }
 
         .hero-btn {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #5a0000 100%);
             color: white;
-            padding: 12px 30px;
+            padding: 15px 40px;
             text-decoration: none;
-            font-weight: bold;
-            border: 1px solid var(--primary-color);
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.15);
             border-radius: 30px;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(158, 27, 27, 0.4);
+            box-shadow: var(--shadow-3d);
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 1px;
         }
 
         .hero-btn:hover {
-            background-color: transparent;
-            color: var(--primary-color);
-            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-matte-hover);
+            background: linear-gradient(135deg, var(--primary-hover) 0%, #6e0000 100%);
+        }
+
+        .hero-btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-3d);
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-matte-hover);
+            background: rgba(139, 0, 0, 0.25);
+            border-color: var(--primary-hover);
         }
 
         /* --- SEKCJE OGÓLNE --- */
-        .section-padding {
-            padding: 70px 20px;
+        .section-padding { padding: 80px 20px; }
+        section:nth-child(even) { 
+            background: radial-gradient(circle at center, #181818 0%, #101010 100%); 
         }
-
-        section:nth-child(even) { background-color: var(--bg-section); }
-        section:nth-child(odd) { background-color: var(--bg-body); }
+        section:nth-child(odd) { 
+            background: radial-gradient(circle at center, #121212 0%, #080808 100%); 
+        }
 
         .container {
             max-width: 1200px;
@@ -175,84 +262,316 @@
             text-align: center;
             font-size: 2.2rem;
             color: var(--primary-color);
-            margin-bottom: 40px;
+            margin-bottom: 45px;
             position: relative;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 70px;
             height: 3px;
             background-color: var(--primary-color);
             margin: 15px auto 0;
+            border-radius: 2px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* --- O NAS & HARMONOGRAM --- */
-        .about-content {
-            text-align: center;
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto 50px auto;
+        /* --- 1. O NAS --- */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 40% 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .about-image-wrapper {
+            width: 100%;
+            height: 340px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            box-shadow: var(--shadow-3d);
+            background-color: #111;
+        }
+
+        .about-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9);
+            transition: transform 0.4s ease;
+        }
+
+        .about-image-wrapper:hover img {
+            transform: scale(1.03);
+            filter: brightness(1);
+        }
+
+        .about-text-wrapper {
+            text-align: left;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.05rem;
             color: var(--text-main);
+            line-height: 1.8;
         }
 
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
+            gap: 18px;
             margin-top: 30px;
         }
 
         .schedule-card {
             background: var(--bg-card);
-            padding: 15px; 
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            padding: 24px 18px; 
+            border-radius: 12px;
+            box-shadow: var(--shadow-3d);
             text-align: center;
-            border: 1px solid #333;
+            border: 1px solid #2a2a2a;
             border-top: 4px solid var(--primary-color);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            height: 100%;
+            justify-content: space-between;
+            position: relative;
         }
 
-        .schedule-card:hover {
+        .schedule-card:hover { 
             transform: translateY(-5px);
+            box-shadow: var(--shadow-matte-hover);
+            border-color: rgba(139, 0, 0, 0.5);
+            background: var(--bg-card-hover);
         }
 
         .patrol-name {
             font-size: 1.3rem;
-            font-weight: bold;
             color: var(--primary-color);
-            display: block;
-            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .meeting-time {
-            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
             font-weight: 600;
             color: white;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .meeting-place {
+            font-family: 'Open Sans', sans-serif;
             font-size: 0.85rem;
             color: var(--text-muted);
             font-style: italic;
             line-height: 1.3;
         }
 
+        .patrols-desc-text {
+            text-align: left;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.98rem;
+            color: #ffffff;
+            max-width: 100%;
+            margin: 45px auto 15px auto;
+            line-height: 1.6;
+        }
+
+        .team-meetings-card {
+            background: var(--bg-card);
+            padding: 28px 35px;
+            border-radius: 14px;
+            border: 1px solid #2a2a2a;
+            border-top: 4px solid var(--primary-color);
+            max-width: 100%;
+            margin: 45px auto 0 auto;
+            text-align: center;
+            box-shadow: var(--shadow-3d);
+            transition: all 0.3s ease;
+        }
+
+        .team-meetings-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-matte-hover);
+            background: var(--bg-card-hover);
+        }
+
+        .team-meetings-title {
+            color: var(--primary-color);
+            font-size: 1.35rem;
+            margin-bottom: 8px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .team-meetings-time {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .team-meetings-desc {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.92rem;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* --- PROGRAM --- */
+        .program-container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .program-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .program-sidebar-header {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .program-sidebar-sub {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .program-tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-muted);
+            padding: 14px 20px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .program-tab-btn:hover {
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .program-tab-btn.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #500000 100%);
+            color: white;
+            border-color: rgba(255,255,255,0.1);
+            box-shadow: var(--shadow-3d);
+            transform: translateX(4px);
+        }
+
+        .program-tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .program-tab-content.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .program-card-horizontal {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid #2a2a2a;
+            display: grid;
+            grid-template-columns: 1fr 260px;
+            overflow: hidden;
+            box-shadow: var(--shadow-3d);
+            transition: all 0.3s ease;
+            height: 180px;
+        }
+
+        .program-card-horizontal:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-matte-hover);
+            border-color: rgba(139, 0, 0, 0.4);
+        }
+
+        .program-card-info {
+            padding: 22px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .program-card-info h4 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .program-card-info p {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.45;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .program-card-media {
+            position: relative;
+            overflow: hidden;
+            width: 260px;
+            height: 180px;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+            background-color: #111;
+        }
+
+        .program-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .program-card-horizontal:hover .program-card-media img {
+            transform: scale(1.05);
+        }
+
         /* --- STATYSTYKI --- */
         .stats-section {
-            background-color: #0f0f0f;
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-            padding: 50px 20px;
+            background: radial-gradient(circle at center, #141414 0%, #050505 100%);
+            border-top: 1px solid #252525;
+            border-bottom: 1px solid #252525;
+            padding: 55px 20px;
             text-align: center;
         }
 
@@ -260,36 +579,49 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
-            gap: 50px;
+            gap: 40px;
         }
 
         .stat-item h3 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 5px;
             color: var(--primary-color);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+            line-height: 1.1;
         }
 
         .stat-item p {
+            font-family: 'Open Sans', sans-serif;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--text-muted);
+            font-weight: 600;
         }
 
         /* --- GALERIA --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 22px;
+        }
+
         .gallery-item {
             height: 250px;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            border: 1px solid #333;
-            transition: border-color 0.3s;
+            border: 1px solid #2a2a2a;
+            box-shadow: var(--shadow-3d);
+            transition: all 0.3s ease;
         }
 
-        .gallery-item:hover {
+        .gallery-item:hover { 
             border-color: var(--primary-color);
+            box-shadow: var(--shadow-matte-hover);
+            transform: translateY(-4px);
         }
 
         .gallery-item img {
@@ -297,22 +629,805 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.4s ease;
-            filter: brightness(0.8);
+            filter: brightness(0.88);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
             filter: brightness(1);
+        }
+
+        /* --- SOCIAL MEDIA --- */
+        .social-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 800px;
+            margin: 30px auto 0 auto;
+        }
+
+        .social-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 32px;
+            border: 1px solid #2a2a2a;
+            box-shadow: var(--shadow-3d);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-matte-hover); }
+        .social-card.fb:hover { border-color: #1877f2; }
+        .social-card.insta:hover { border-color: #dc2743; }
+
+        .social-icon {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+        }
+
+        .social-card.fb .social-icon { color: #1877f2; }
+        .social-card.insta .social-icon { 
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .social-card p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+        }
+
+        .social-btn-fb, .social-btn-insta {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .social-btn-fb { background-color: #1877f2; }
+        .social-btn-insta { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .social-btn-fb:hover, .social-btn-insta:hover { opacity: 0.92; transform: translateY(-2px); }
+
+        /* WYDARZENIA W AKTUALNOŚCIACH */
+        .events-subgrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background: var(--bg-card);
+            border: 1px solid #2a2a2a;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: var(--shadow-3d);
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 0, 0, 0.5);
+        }
+
+        .event-card h4 {
+            color: white;
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .event-card p {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .event-card strong {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* --- KADRA I KONTAKT I ZAPISY --- */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .staff-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-3d);
+            text-align: center;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-matte-hover);
+        }
+
+        .staff-img {
+            width: 175px;
+            height: 175px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 30%;
+            filter: brightness(1.25) contrast(1.15) saturate(0.85);
+            image-rendering: -webkit-optimize-contrast;
+            margin: 0 auto 18px auto;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            background-color: #222;
+            display: block;
+        }
+
+        .staff-role-title {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .staff-name {
+            font-size: 1.25rem;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .staff-desc {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.92rem;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            line-height: 1.65;
+            text-align: left;
+        }
+
+        .staff-contact-details {
+            margin-top: 15px;
+            text-align: left;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .staff-contact-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.92rem;
+            color: var(--text-main);
+        }
+
+        .staff-contact-row:last-child { margin-bottom: 0; }
+
+        .staff-contact-icon {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary-color);
+        }
+
+        .staff-contact-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+
+        .staff-contact-row a {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .staff-contact-row a:hover { color: var(--primary-color); }
+
+        .staff-recruit-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #5a0000 100%);
+            color: white;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: var(--shadow-3d);
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .staff-recruit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-matte-hover);
+            background: linear-gradient(135deg, var(--primary-hover) 0%, #6e0000 100%);
+        }
+
+        /* --- DOKUMENTY I SKŁADKI --- */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .docs-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #2a2a2a;
+            border-top: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-3d);
+            transition: all 0.3s ease;
+        }
+
+        .docs-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-matte-hover);
+        }
+
+        .docs-card h3 {
+            color: white;
+            font-size: 1.35rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .docs-card h3 i {
+            color: var(--primary-color);
+        }
+
+        .doc-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #121212;
+            color: white;
+            padding: 13px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 12px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .doc-link-btn:hover {
+            border-color: var(--primary-color);
+            background: #1a1a1a;
+            transform: translateX(4px);
+            color: var(--primary-color);
+        }
+
+        .fee-info {
+            background: #121212;
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .bank-box-unified {
+            background: #121212;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.92rem;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .account-number-bold {
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 1rem;
+            font-variant-numeric: lining-nums tabular-nums;
+        }
+
+        /* --- DLA HARCERZY --- */
+        .scouts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .scouts-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #2a2a2a;
+            border-top: 4px solid var(--primary-color);
+            box-shadow: var(--shadow-3d);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .scouts-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-matte-hover);
+        }
+
+        .scouts-card h3 {
+            color: white;
+            font-size: 1.35rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .eproba-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #121212;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .eproba-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .eproba-logo-icon {
+            height: 28px;
+            width: auto;
+        }
+
+        .stamps-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #5a0000 100%);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 2px solid #000000;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: var(--shadow-3d);
+            margin-bottom: 20px;
+        }
+
+        .stamps-btn:hover {
+            background: linear-gradient(135deg, var(--primary-hover) 0%, #6e0000 100%);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-matte-hover);
+            border-color: #222222;
+        }
+
+        .esongbook-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #222222;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 2px solid var(--primary-color);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: var(--shadow-3d);
+            margin-top: 20px;
+        }
+
+        .esongbook-btn:hover {
+            background: #2c2c2c;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-matte-hover);
+            border-color: var(--primary-hover);
+        }
+
+        .ksis-info-box {
+            background: #121212;
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .discord-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 28px 35px;
+            border: 1px solid #2a2a2a;
+            border-top: 4px solid #5865F2;
+            box-shadow: var(--shadow-3d);
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            transition: all 0.3s ease;
+        }
+
+        .discord-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(88, 101, 242, 0.2);
+            border-color: rgba(88, 101, 242, 0.5);
+        }
+
+        .discord-content-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .discord-logo-icon {
+            font-size: 3rem;
+            color: #5865F2;
+        }
+
+        .discord-text-box h4 {
+            color: #ffffff;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .discord-text-box p {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .discord-badge {
+            background: rgba(88, 101, 242, 0.15);
+            color: #8ea1e1;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* --- WYKRES PUNKTACJI ZASTĘPÓW --- */
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 15px;
+        }
+
+        .chart-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #141414;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+        }
+
+        .chart-row.rank-1 {
+            border: 1.2px solid rgba(255, 204, 0, 0.6);
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.05) 0%, #161616 100%);
+            box-shadow: 0 0 10px rgba(255, 204, 0, 0.1);
+        }
+        .chart-row.rank-1 .chart-rank { color: #ffcc00; }
+
+        .chart-row.rank-2 {
+            border: 1.2px solid rgba(192, 192, 192, 0.6);
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.05) 0%, #161616 100%);
+            box-shadow: 0 0 8px rgba(192, 192, 192, 0.08);
+        }
+        .chart-row.rank-2 .chart-rank { color: #d0d0d0; }
+
+        .chart-row.rank-3 {
+            border: 1.2px solid rgba(205, 127, 50, 0.6);
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.05) 0%, #161616 100%);
+            box-shadow: 0 0 8px rgba(205, 127, 50, 0.08);
+        }
+        .chart-row.rank-3 .chart-rank { color: #cd7f32; }
+
+        .chart-rank {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            min-width: 24px;
+            text-align: center;
+            font-variant-numeric: lining-nums tabular-nums;
+        }
+
+        .chart-info-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .chart-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.92rem;
+            font-variant-numeric: lining-nums tabular-nums;
+        }
+
+        .chart-patrol-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .patrol-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chart-score-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .chart-diff {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .chart-bar-bg {
+            background: #0d0d0d;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid #282828;
+            width: 100%;
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        .bar-leader {
+            background: linear-gradient(90deg, #b30000 0%, #e60000 100%);
+            box-shadow: 0 0 8px rgba(230, 0, 0, 0.4);
+        }
+
+        .bar-rest {
+            background: linear-gradient(90deg, #5a0000 0%, #8b0000 100%);
+        }
+
+        /* --- FORMULARZ ZGŁOSZENIOWY (MODAL) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.88);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: var(--bg-card);
+            border: 2px solid var(--primary-color);
+            border-radius: 16px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 30px;
+            margin: auto;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            animation: modalAnim 0.3s ease forwards;
+        }
+
+        .modal-content::-webkit-scrollbar { width: 8px; }
+        .modal-content::-webkit-scrollbar-track { background: #121212; border-radius: 4px; }
+        .modal-content::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
+
+        @keyframes modalAnim {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-close {
+            position: sticky;
+            float: right;
+            right: 0px; top: 0px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+            line-height: 1;
+            background: transparent;
+            border: none;
+        }
+
+        .modal-close:hover { color: var(--primary-color); }
+
+        .form-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-main);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            background-color: #121212;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 6px rgba(139, 0, 0, 0.5);
+        }
+
+        .form-checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 18px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+            text-align: left;
+        }
+
+        .form-checkbox-group input[type="checkbox"] {
+            margin-top: 3px;
+            width: 15px;
+            height: 15px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .form-submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #5a0000 100%);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-3d);
+        }
+
+        .form-submit-btn:hover { 
+            background: linear-gradient(135deg, var(--primary-hover) 0%, #6e0000 100%);
+            transform: translateY(-2px);
+        }
+
+        .form-error-msg {
+            display: none;
+            color: #ff6b6b;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .form-success-message {
+            display: none;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .form-success-message h4 {
+            color: #4CAF50;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .form-success-message p {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         /* --- LIGHTBOX --- */
         .lightbox {
             position: fixed;
             z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
             display: flex;
             justify-content: center;
@@ -329,261 +1444,342 @@
             max-width: 95%;
             max-height: 90vh;
             border: 2px solid var(--primary-color);
-            box-shadow: 0 0 30px rgba(158, 27, 27, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+            border-radius: 8px;
         }
 
         .lightbox-close {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 20px; right: 30px;
             color: var(--primary-color);
             font-size: 3rem;
             cursor: pointer;
-            line-height: 1;
         }
 
-        /* --- KARTA KONTAKTOWA --- */
-        .staff-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .staff-card {
-            width: 350px;
-            background: var(--bg-card);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center;
-            border: 1px solid #333;
-            transition: transform 0.3s;
-        }
-
-        .staff-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-        }
-
-        .staff-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid var(--primary-color);
-            background-color: #333;
-        }
-
-        .staff-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 5px;
-        }
-
-        .staff-role {
-            font-weight: 600;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-        
-        .staff-contact-details {
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            text-align: left;
-        }
-
-        .staff-contact-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 1rem;
-            color: var(--text-main);
-        }
-
-        .staff-contact-icon {
-            margin-right: 15px;
-            font-size: 1.2rem;
-            width: 25px;
-            text-align: center;
-        }
-
-        .staff-contact-row a {
-            color: var(--text-main);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .staff-contact-row a:hover {
-            color: var(--primary-color);
-        }
-
-        /* --- AKTUALNOŚCI (FB & INSTA) --- */
-        .fb-link-box {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 10px;
-            display: block;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border: 1px solid #333;
-        }
-        
-        .fb-btn {
-            display: inline-block;
-            margin-top: 20px;
-            background-color: #1877f2;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        
-        .fb-btn:hover { background-color: #115dc7; }
-
-        .insta-btn {
-            display: inline-block;
-            margin-top: 20px;
-            margin-left: 10px;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: opacity 0.3s;
-        }
-
-        .insta-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* --- STOPKA --- */
+        /* --- STOPKA Z MAPĄ GOOGLE MAPS --- */
         footer {
-            background-color: #000;
+            background-color: #050505;
             color: var(--text-muted);
-            padding: 60px 20px 20px;
-            border-top: 2px solid var(--primary-color);
+            padding: 70px 20px 25px;
+            border-top: 3px solid var(--primary-color);
         }
 
         .footer-content {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
             gap: 40px;
-        }
-        
-        /* Styl kontenera mapy */
-        #map {
-            width: 100%;
-            height: 350px;
-            border-radius: 10px;
-            border: 2px solid #333;
-            z-index: 1; /* Ważne, żeby mapa nie przykrywała menu */
         }
 
         .footer-bottom {
             text-align: center;
             margin-top: 50px;
             padding-top: 20px;
-            border-top: 1px solid #333;
+            border-top: 1px solid #222;
+            font-family: 'Open Sans', sans-serif;
             font-size: 0.85rem;
         }
 
         /* --- MEDIA QUERIES --- */
         @media (max-width: 900px) {
-            .schedule-grid {
-                grid-template-columns: repeat(2, 1fr); 
+            .about-layout {
+                grid-template-columns: 1fr;
+            }
+            .about-image-wrapper {
+                height: 240px;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .hamburger-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(14, 14, 14, 0.98);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 20px;
+                border-bottom: 2px solid var(--primary-color);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.8);
+                gap: 12px;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+            }
+            .program-container {
+                grid-template-columns: 1fr;
+            }
+            .program-sidebar {
+                position: static;
+            }
+            .program-card-horizontal {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .program-card-media {
+                width: 100%;
+                height: 200px;
             }
         }
 
         @media (max-width: 600px) {
-            .main-nav { flex-direction: column; padding: 1rem; }
-            .nav-links { flex-wrap: wrap; justify-content: center; margin-top: 15px; }
-            .hero h1 { font-size: 2rem; }
-            
-            .schedule-grid {
-                grid-template-columns: 1fr; 
-            }
+            .main-nav { flex-wrap: wrap; padding: 1rem; }
+            .hero h1 { font-size: 2.1rem; }
+            .team-meetings-card { padding: 22px 18px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAWIGACJA -->
     <nav class="main-nav">
         <a href="#" class="logo-container">
-            <img src="logo.png" alt="Logo 5 KDH" class="logo-img">
-            <span class="troop-short-name">5 KDH "PIORUN"</span>
+            <img src="logo.png" alt="Logo 5 KDH Piorun" class="logo-img">
+            <span class="troop-short-name">5 KDH „PIORUN”</span>
         </a>
-        <ul class="nav-links">
+        <button class="hamburger-btn" id="hamburgerBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Otwórz menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="#o-nas">O nas</a></li>
-            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#program">Program</a></li>
             <li><a href="#aktualnosci">Aktualności</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#kadra">Kontakt i zapisy</a></li>
+            <li><a href="#dokumenty">Dokumenty</a></li>
+            <li><a href="#dla-harcerzy">Dla Harcerzy</a></li>
         </ul>
     </nav>
 
+    <!-- HERO -->
     <header class="hero">
-        <h1>5 Krakowska Drużyna Harcerzy<br>"PIORUN"</h1>
+        <h1>5 Krakowska Drużyna Harcerzy<br>„PIORUN”</h1>
         <h2>im. Legionistów roku 1914</h2>
-        <a href="#o-nas" class="hero-btn">Dołącz do nas</a>
+        <div class="hero-buttons-container">
+            <button class="hero-btn" onclick="scrollToContactAndOpenModal()">Dołącz do nas</button>
+            <a href="#o-nas" class="hero-btn-secondary">Dowiedz się więcej</a>
+        </div>
     </header>
 
+    <!-- 1. O NAS -->
     <section id="o-nas" class="section-padding">
         <div class="container">
             <h2 class="section-title">O Naszej Drużynie</h2>
-            <div class="about-content">
-                <p>
-                    Jesteśmy <strong>5 Krakowską Drużyną Harcerzy "Piorun"</strong>. Należymy do <strong>Związku Harcerstwa Rzeczypospolitej</strong>, a w ramach jego struktur, wchodzimy w skład <strong>Małopolskiej Chorągwi Harcerzy</strong> oraz <strong>Hufca Kraków-Krowodrza</strong>. Od ponad 45 lat, kształcimy młodzież w oparciu o harcerskie wartości oraz ideały.
-                   Zbiórki naszych zastępów odbywają się w szkołach: im. św. Jadwigi Królowej oraz im. św. Joanny Beretty-Molli. 
-                    Jesteśmy zgraną drużyną liczącą <strong>4 prężnie działające zastępy</strong>. Zbiórki drużyny odbywają się raz w miesiącu w ciekawych oraz rozwijających nasze zainteresowania oraz umiejętności formach. Zapraszamy do dołączenia w nasze szeregi!
-
-                </p>
+            
+            <div class="about-layout">
+                <div class="about-image-wrapper">
+                    <img src="o.nas.jpg" alt="Harcerze z 5 KDH Piorun przed namiotem na obozie letnim" loading="lazy">
+                </div>
+                <div class="about-text-wrapper">
+                    <p>
+                        Jesteśmy 5 Krakowską Drużyną Harcerzy „Piorun”. Należymy do Związku Harcerstwa Rzeczypospolitej, a w ramach jego struktur wchodzimy w skład Małopolskiej Chorągwi Harcerzy oraz Hufca Kraków-Krowodrza. Od ponad 45 lat kształcimy młodzież w oparciu o harcerskie wartości oraz ideały. Zbiórki naszych zastępów odbywają się w Katolickiej Szkole Podstawowej im. św. Jadwigi Królowej oraz w Katolickiej Szkole Podstawowej im. św. Joanny Beretty Molli. W tym roku nawiązaliśmy także współpracę z SP nr 153 im. ks. prof. Józefa Tischnera. Jesteśmy zgraną drużyną liczącą 4 prężnie działające zastępy oraz 1 nowo założony! Zbiórki drużyny odbywają się raz w miesiącu w ciekawych oraz rozwijających nasze zainteresowania i umiejętności formach. Zapraszamy wszystkich chętnych chłopców od klasy 5 wzwyż do dołączenia w nasze szeregi!
+                    </p>
+                </div>
             </div>
 
-            <h3 style="text-align: center; margin-bottom: 20px; color: var(--text-muted);">Zastępy i terminy zbiórek</h3>
+            <h3 style="text-align: center; margin-bottom: 25px; color: #ffffff;">Zastępy i terminy zbiórek</h3>
             
+            <!-- 5 KAFELKÓW ZASTĘPÓW -->
             <div class="schedule-grid">
                 <div class="schedule-card">
-                    <span class="patrol-name">🐆 Rysie</span>
+                    <span class="patrol-name"><span>🐆</span> <span>RYSIE</span></span>
                     <span class="meeting-time">Piątek 18:00 – 19:30</span>
-                    <span class="meeting-place">KSP im. św. Joanny Beretty-Molli</span>
+                    <span class="meeting-place">Katolicka Szkoła Podstawowa im. św. Joanny Beretty Molli</span>
                 </div>
                 
                 <div class="schedule-card">
-                    <span class="patrol-name">🦊 Lisy</span>
+                    <span class="patrol-name"><span>🦊</span> <span>LISY</span></span>
                     <span class="meeting-time">Czwartek 17:00 – 18:30</span>
-                    <span class="meeting-place">KSP im. św. Joanny Beretty-Molli</span>
+                    <span class="meeting-place">Katolicka Szkoła Podstawowa im. św. Joanny Beretty Molli</span>
                 </div>
 
                 <div class="schedule-card">
-                    <span class="patrol-name">🦡 Rosomaki</span>
-                    <span class="meeting-time">Czwartek 17:00 – 18:30</span>
-                    <span class="meeting-place">KSP im. św. Joanny Beretty-Molli</span>
+                    <span class="patrol-name"><span>🦡</span> <span>ROSOMAKI</span></span>
+                    <span class="meeting-time">Czwartek 17:30 – 19:00</span>
+                    <span class="meeting-place">Katolicka Szkoła Podstawowa im. św. Joanny Beretty Molli</span>
                 </div>
 
                 <div class="schedule-card">
-                    <span class="patrol-name">🪖 Komandosi</span>
-                    <span class="meeting-time">Poniedziałek 15:00 – 16:30</span>
-                    <span class="meeting-place">KSP im. św. Jadwigi Królowej</span>
+                    <span class="patrol-name"><span>🪖</span> <span>KOMANDOSI</span></span>
+                    <span class="meeting-time">Wtorek 15:30 – 17:00</span>
+                    <span class="meeting-place">Katolicka Szkoła Podstawowa im. św. Jadwigi Królowej</span>
+                </div>
+
+                <div class="schedule-card">
+                    <span class="patrol-name"><span>Ⅴ</span> <span>ZASTĘP V</span></span>
+                    <span class="meeting-time">Czwartek 17:00 – 18:30</span>
+                    <span class="meeting-place">SP nr 153 im. ks. prof. Józefa Tischnera</span>
+                </div>
+            </div>
+
+            <p class="patrols-desc-text">
+                <strong style="color: var(--primary-color);">Zbiórki Zastępów:</strong> To spotkania w gronie rówieśników, pod przewodnictwem nieco starszego zastępowego. Chłopaki wspólnie podejmują różne aktywności: od gier sportowych i zadań logicznych, przez techniki harcerskie, aż po wycieczki i dzielenie się własnymi pasjami. To czas nauki przez działanie, dobrej zabawy i budowania prawdziwych relacji.
+            </p>
+
+            <!-- KAFELEK: ZBIÓRKI DRUŻYNY -->
+            <div class="team-meetings-card">
+                <div class="team-meetings-title">ZBIÓRKI DRUŻYNY</div>
+                <div class="team-meetings-time">Raz w miesiącu</div>
+                <div class="team-meetings-desc">
+                    Różnego rodzaju akcje organizowane dla całej drużyny, takie jak: gry terenowe i miejskie, warsztaty, zwiedzanie różnych miejsc, biwaki oraz wycieczki.
                 </div>
             </div>
             
-            <p style="text-align: center; margin-top: 30px; font-style: italic; color: #666;">
-                Zapraszamy na zbiórki wszystkich chłopaków od 5 klasy wzwyż!
+            <p style="text-align: center; margin-top: 30px; font-style: italic; color: #888;">
+                Zapraszamy na zbiórki wszystkich chłopaków od 5 klasy szkoły podstawowej wzwyż!
             </p>
         </div>
     </section>
 
+    <!-- 2. PROGRAM -->
+    <section id="program" class="section-padding">
+        <div class="container">
+            <div class="program-container">
+                
+                <div class="program-sidebar">
+                    <div class="program-sidebar-header">Program</div>
+                    <div class="program-sidebar-sub">Działamy prężnie przez cały rok!</div>
+                    
+                    <button class="program-tab-btn active" onclick="switchTab('srodrocze', this)">Śródrocze</button>
+                    <button class="program-tab-btn" onclick="switchTab('zimowiska', this)">Zimowiska</button>
+                    <button class="program-tab-btn" onclick="switchTab('obozy', this)">Obozy letnie</button>
+                </div>
+
+                <div class="program-content">
+                    
+                    <!-- TAB 1: ŚRÓDROCZE -->
+                    <div id="tab-srodrocze" class="program-tab-content active">
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Zbiórki Drużyny</h4>
+                                <p>Różnego rodzaju akcje, w których harcerze mają okazję na zobaczenie, zwiedzenie ciekawych miejsc oraz poznanie i spotkania z ekspertami z różnych dziedzin, a także branie udziału w różnego rodzaju szkoleniach prowadzonych przez kadrę i nie tylko.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-zbiorki.jpg" alt="Zbiórki Drużyny">
+                            </div>
+                        </div>
+
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Gry Miejskie i Terenowe</h4>
+                                <p>Wykorzystywanie oraz poznawanie technik harcerskich w terenie, a także różnego rodzaju gry ruchowe takie jak podchody, maskowanie, przejmowanie baz i wiele więcej.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-gry.jpg" alt="Gry terenowe">
+                            </div>
+                        </div>
+
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Biwaki</h4>
+                                <p>Weekendowe wyjazdy na łono natury, pod namioty lub do schronisk, gdzie prowadzone są różnego rodzaju zajęcia, w tym gotowanie na ogniu. Raz w roku, w okresie jesiennym, organizujemy także Biwak Miejski w celu poznania nowych, ciekawych miast w Polsce.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-biwaki.jpg" alt="Biwaki">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: ZIMOWISKA -->
+                    <div id="tab-zimowiska" class="program-tab-content">
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Gry ruchowe</h4>
+                                <p>Gry ruchowe na śniegu, sporty i aktywności na świeżym powietrzu. Także wyjścia na lodowiska, turnieje rycerskie i zajęcia strzeleckie.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-ruchowe.jpg" alt="Gry ruchowe">
+                            </div>
+                        </div>
+
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Zajęcia logiczno-manualne</h4>
+                                <p>Tworzenie filmików krótkometrażowych, szyfrowanie, prace techniczne, nauka pierwszej pomocy oraz technik harcerskich w ośrodku.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-manualne.jpg" alt="Zajęcia logiczno-manualne">
+                            </div>
+                        </div>
+
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Wycieczki</h4>
+                                <p>Wspólne wędrówki szlakami, zdobywanie pobliskich szczytów i podziwianie widoków.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-wycieczki-zimowe.jpg" alt="Wycieczki zimowe">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: OBOZY LETNIE -->
+                    <div id="tab-obozy" class="program-tab-content">
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Pionierka</h4>
+                                <p>Tworzenie własnego leśnego domu z drewna – stawianie namiotów, budowa pryczy, półek oraz bram.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-pionierka.jpg" alt="Pionierka">
+                            </div>
+                        </div>
+
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Zajęcia i szkolenia</h4>
+                                <p>Różnorodne gry sprawnościowe i terenowe, nauka pierwszej pomocy, obsługa mapy i kompasu, zajęcia teatralne, wędkowanie oraz zdobywanie nowych sprawności.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-szkolenia.jpg" alt="Szkolenia">
+                            </div>
+                        </div>
+
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Wędrówki i wycieczki</h4>
+                                <p>Kilkugodzinne wędrówki po okolicy w celu jej poznania, a także 3-dniowe zwiedzanie pobliskiego dużego miasta lub okolicznych miejscowości wraz z korzystaniem z oferowanych przez nie atrakcji.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-wedrowki.jpg" alt="Wędrówki">
+                            </div>
+                        </div>
+
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Miejscowe atrakcje</h4>
+                                <p>Kąpiele w jeziorze, zwiedzanie miejscowych zabytków i zamków, wypas owiec, zajęcia z kołami gospodyń wiejskich oraz poznawanie okolicznej przyrody z leśniczym.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-atrakcje.jpg" alt="Atrakcje">
+                            </div>
+                        </div>
+
+                        <div class="program-card-horizontal">
+                            <div class="program-card-info">
+                                <h4>Ogniska</h4>
+                                <p>Wieczorny czas refleksji, dzielenia się swoimi odczuciami, śpiewania harcerskich piosenek, a także dyskusji o wartościach oraz słuchania gawęd przy ogniu.</p>
+                            </div>
+                            <div class="program-card-media">
+                                <img src="program-ogniska.jpg" alt="Ogniska">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATYSTYKI -->
     <section class="stats-section">
         <div class="stats-grid">
             <div class="stat-item">
@@ -591,116 +1787,677 @@
                 <p>Rok Założenia</p>
             </div>
             <div class="stat-item">
-                <h3>4</h3>
-                <p>Aktywne Zastępy</p>
+                <h3>5</h3>
+                <p>Aktywnych Zastępów</p>
             </div>
-             <div class="stat-item">
-                <h3>>45 lat</h3>
-                <p>Działania "Pioruna"</p>
+            <div class="stat-item">
+                <h3>&gt;30</h3>
+                <p>Harcerzy w Drużynie</p>
             </div>
-        </div>
-    </section>
-
-    <section id="galeria" class="section-padding gallery-section">
-        <div class="container">
-            <h2 class="section-title">Galeria Zdjęć Drużyny</h2>
-            <p style="text-align: center; margin-bottom: 30px; color: var(--text-muted);">5 Krakowska Drużyna Harcerzy "Piorun"</p>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="foto1.jpg" alt="Obraz 1"></div>
-                <div class="gallery-item"><img src="foto2.jpg" alt="Obraz 2"></div>
-                <div class="gallery-item"><img src="foto3.jpg" alt="Obraz 3"></div>
-                <div class="gallery-item"><img src="foto4.jpg" alt="Obraz 4"></div>
-                <div class="gallery-item"><img src="foto5.jpg" alt="Obraz 5"></div>
-                <div class="gallery-item"><img src="foto6.jpg" alt="Obraz 6"></div>
+            <div class="stat-item">
+                <h3>&gt;45 lat</h3>
+                <p>Działania „Pioruna”</p>
             </div>
         </div>
     </section>
 
+    <!-- 3. AKTUALNOŚCI -->
     <section id="aktualnosci" class="section-padding">
         <div class="container">
             <h2 class="section-title">Co słychać w drużynie?</h2>
-            <div class="fb-link-box">
-                <p>Najświeższe relacje z wyjazdów, zdjęcia ze zbiórek i informacje bieżące publikujemy na naszych profilach.</p>
-                <a href="https://www.facebook.com/5KDHPiorun" target="_blank" class="fb-btn">Facebook</a>
-                <a href="https://www.instagram.com/5kdhpiorun/" target="_blank" class="insta-btn">Instagram</a>
+            <p style="text-align: center; color: var(--text-muted); font-family: 'Open Sans', sans-serif;">
+                Najświeższe relacje z biwaków, wyjazdów i akcji drużyny znajdziesz w naszych social mediach.
+            </p>
+
+            <div class="social-cards-grid">
+                <div class="social-card fb">
+                    <div>
+                        <div class="social-icon"><i class="fab fa-facebook"></i></div>
+                        <h3>Facebook</h3>
+                        <p>Bieżące ogłoszenia, relacje oraz zdjęcia z akcji drużyny.</p>
+                    </div>
+                    <a href="https://www.facebook.com/5KDHPiorun" target="_blank" class="social-btn-fb">Odwiedź Facebooka</a>
+                </div>
+
+                <div class="social-card insta">
+                    <div>
+                        <div class="social-icon"><i class="fab fa-instagram"></i></div>
+                        <h3>Instagram</h3>
+                        <p>Relacje na żywo z akcji drużyny oraz kadry z życia i działalności Pioruna.</p>
+                    </div>
+                    <a href="https://www.instagram.com/5kdhpiorun/" target="_blank" class="social-btn-insta">Odwiedź Instagrama</a>
+                </div>
+            </div>
+
+            <!-- PODSEKCJA WYDARZENIA -->
+            <h3 style="text-align: center; margin-top: 50px; color: white;">Nadchodzące Wydarzenia</h3>
+            <div class="events-subgrid">
+                <div class="event-card">
+                    <h4>Najbliższa zbiórka drużyny</h4>
+                    <p>Informacje o najbliższej zbiórce drużyny przekazywane są również chłopakom za pośrednictwem zastępowych na zbiórkach zastępów a także kadrę na dedykowanym kanale na serwerze discord drużyny.</p>
+                    <p style="margin-top: 12px; font-size: 0.88rem; line-height: 1.7; font-family: 'Open Sans', sans-serif;">
+                        <strong>Data:</strong> <br>
+                        <strong>Czas trwania:</strong> <br>
+                        <strong>Tematyka:</strong> <br>
+                        <strong>Miejsce spotkania:</strong> <br>
+                        <strong>Teren zbiórki:</strong> <br>
+                        <strong>Spis ekwipunku:</strong> 
+                    </p>
+                </div>
+                <div class="event-card">
+                    <h4>Nadchodząca Akcja Letnia / Zimowa</h4>
+                    <p>Szczegółowe informacje dotyczące wyjazdów przekazujemy rodzicom w mailach. W wiadomości wysyłany jest także link do ankiety zgłoszeniowej, karta kwalifikacyjna uczestnika wyjazdu oraz informator przygotowany przez kadrę wyjazdu.</p>
+                    <p style="margin-top: 12px; font-size: 0.88rem; line-height: 1.7; font-family: 'Open Sans', sans-serif;">
+                        <strong>Rodzaj wyjazdu:</strong> <br>
+                        <strong>Termin:</strong> <br>
+                        <strong>Miejsce:</strong> <br>
+                        <strong>Koszt:</strong> 
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="kontakt" class="section-padding">
+    <!-- 4. GALERIA -->
+    <section id="galeria" class="section-padding gallery-section">
         <div class="container">
-            <h2 class="section-title">Kontakt z Drużynowym</h2>
+            <h2 class="section-title">Galeria Zdjęć Drużyny</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: var(--text-muted); font-family: 'Open Sans', sans-serif;">5 Krakowska Drużyna Harcerzy „Piorun” im. Legionistów roku 1914</p>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="foto1.jpg" alt="Zbiórka 5 KDH Piorun w lesie" loading="lazy"></div>
+                <div class="gallery-item"><img src="foto2.jpg" alt="Obóz harcerski drużyny Piorun" loading="lazy"></div>
+                <div class="gallery-item"><img src="foto3.jpg" alt="Musztra i apel drużyny" loading="lazy"></div>
+                <div class="gallery-item"><img src="foto4.jpg" alt="Wyprawa zastępu Rysie" loading="lazy"></div>
+                <div class="gallery-item"><img src="foto5.jpg" alt="Ognisko harcerskie 5 KDH" loading="lazy"></div>
+                <div class="gallery-item"><img src="foto6.jpg" alt="Wspólne zdjęcie 5 KDH Piorun" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. KADRA I KONTAKT I ZAPISY -->
+    <section id="kadra" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Kontakt i zapisy</h2>
             
-            <div class="staff-container">
+            <div class="staff-grid">
+                <!-- Drużynowy -->
                 <div class="staff-card">
-                    <img src="druzynowy.jpg" alt="Zdjęcie Drużynowego" class="staff-img">
-                    
-                    <div class="staff-name">pwd. Mateusz Różkowski HO</div>
-                    <div class="staff-role">Drużynowy</div>
-                    
-                    <div class="staff-contact-details">
-                        <div class="staff-contact-row">
-                            <span class="staff-contact-icon">📞</span>
-                            <a href="tel:736054531">736 054 531</a>
+                    <div>
+                        <img src="druzynowy.jpg" alt="pwd. Mateusz Różkowski HO" class="staff-img">
+                        <div class="staff-role-title">Drużynowy</div>
+                        <div class="staff-name">pwd. Mateusz Różkowski HO</div>
+                        
+                        <div class="staff-contact-details">
+                            <div class="staff-contact-row">
+                                <span class="staff-contact-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                                </span>
+                                <a href="tel:736054531">736 054 531</a>
+                            </div>
+                            <div class="staff-contact-row">
+                                <span class="staff-contact-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                </span>
+                                <a href="mailto:mateusz.rozkowski@zhr.pl">mateusz.rozkowski@zhr.pl</a>
+                            </div>
                         </div>
-                        <div class="staff-contact-row">
-                            <span class="staff-contact-icon">✉️</span>
-                            <a href="mailto:5kdh.piorun@gmail.com">5kdh.piorun@gmail.com</a>
+                    </div>
+                </div>
+
+                <!-- O naszej kadrze -->
+                <div class="staff-card">
+                    <div>
+                        <div class="staff-contact-icon" style="font-size: 2.2rem; width: auto; height: auto; margin-bottom: 10px;">
+                            <svg style="width: 36px; height: 36px;" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
                         </div>
+                        <div class="staff-name">O naszej kadrze</div>
+                        <p class="staff-desc">
+                            Jesteśmy zgraną i dobrze współpracującą ekipą posiadającą spore doświadczenie harcerskie i wychowawcze. Dobrze znamy metodę harcerską i wiemy, jak przekładać ją na działanie. W aktualnej kadrze działamy już od ponad dwóch lat i pod przewodnictwem drużynowego, wspólnie rozwijamy drużynę, tworzymy nowe możliwości i dbamy o to, by harcerstwo było przestrzenią wyzwań, przygód i wartościowych doświadczeń oraz przyjaźni, które pozostaną na długie lata.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Kontakt z Drużyną -->
+                <div class="staff-card">
+                    <div>
+                        <div class="staff-contact-icon" style="font-size: 2.2rem; width: auto; height: auto; margin-bottom: 10px;">
+                            <svg style="width: 36px; height: 36px;" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+                        </div>
+                        <div class="staff-name">Kontakt z Drużyną</div>
+                        <p class="staff-desc" style="margin-bottom: 15px;">
+                            Jeśli są Państwo zainteresowani dołączeniem syna do drużyny, prosimy o uzupełnienie formularza zgłoszeniowego. W przypadku pytań o działalność, funkcjonowanie lub sprawy bieżące prosimy o kontakt mailowy lub telefoniczny.
+                        </p>
+                        
+                        <div class="staff-contact-details">
+                            <div class="staff-contact-row">
+                                <span class="staff-contact-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                                </span>
+                                <a href="tel:736054531">736 054 531 (Drużynowy)</a>
+                            </div>
+                            <div class="staff-contact-row">
+                                <span class="staff-contact-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                </span>
+                                <a href="mailto:5kdh.piorun@gmail.com">5kdh.piorun@gmail.com</a>
+                            </div>
+                            <div class="staff-contact-row">
+                                <span class="staff-contact-icon">
+                                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                                </span>
+                                <a href="https://m.me/5KDHPiorun" target="_blank" style="color: #1877f2; font-weight: bold;">Napisz na Messengerze</a>
+                            </div>
+                        </div>
+
+                        <button class="staff-recruit-btn" onclick="openModal()">Formularz Zgłoszeniowy</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 6. DOKUMENTY I SKŁADKI -->
+    <section id="dokumenty" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Dokumenty i Składki</h2>
+            
+            <div class="docs-grid">
+                <div class="docs-card">
+                    <h3><i class="fa-solid fa-file-lines"></i> Deklaracje i Zgody</h3>
+                    <p style="font-family: 'Open Sans', sans-serif; font-size: 0.9rem; color: var(--text-main); margin-bottom: 20px; line-height: 1.6;">
+                        Dostępne do pobrania poniżej zgody i deklaracje są formalnym wymogiem uczestnictwa w zbiórkach drużyny i zastępu. Zawierają one podstawowe informacje o harcerzach przetwarzane zgodnie z przepisami RODO oraz są prawną zgodą rodzica lub uczestnika na przynależność do organizacji.
+                    </p>
+                    
+                    <a href="zgoda na przynależność i oświadczenia - osoba poniżej 16 lat.pdf" target="_blank" class="doc-link-btn">
+                        <span>1. Zgoda dla osób poniżej 16 lat</span>
+                        <span>↗</span>
+                    </a>
+                    
+                    <a href="deklaracja przystąpienia i oświadczenia - osoba w wieku od 16 lat do 18 lat.pdf" target="_blank" class="doc-link-btn">
+                        <span>2. Deklaracja dla osób 16–18 lat</span>
+                        <span>↗</span>
+                    </a>
+                    
+                    <a href="deklaracja przystąpienia i oświadczenia - osoba pełnoletnia.pdf" target="_blank" class="doc-link-btn">
+                        <span>3. Deklaracja dla osób pełnoletnich</span>
+                        <span>↗</span>
+                    </a>
+
+                    <h3 style="margin-top: 35px; font-size: 1.25rem;"><i class="fa-solid fa-shirt"></i> Mundur harcerski – poradnik dla rodzica</h3>
+                    <p style="font-family: 'Open Sans', sans-serif; font-size: 0.9rem; color: var(--text-main); margin-bottom: 15px; line-height: 1.6;">
+                        Na pierwszą zbiórkę mundur nie jest potrzebny. Prosimy jednak o zaopatrzenie się w niego przed pierwszym obozem lub zimowiskiem. Wszystkie szczegóły i niezbędne informacje odnośnie umundurowania znajdą Państwo w pliku poniżej.
+                    </p>
+                    
+                    <a href="mundur-harcerski.pdf" target="_blank" class="doc-link-btn">
+                        <span>Pobierz / Wyświetl poradnik mundurowy</span>
+                        <span>↗</span>
+                    </a>
+                </div>
+
+                <div class="docs-card">
+                    <h3><i class="fa-solid fa-coins"></i> Składki Członkowskie</h3>
+                    <div class="fee-info">
+                        Składki członkowskie to środki przeznaczone na bieżące funkcjonowanie Związku (w tym ubezpieczenie NNW członków, działalność administracyjną okręgów i naczelnictwa), a nie opłata za konkretne zajęcia czy uczestnictwo w pojedynczej zbiórce. Prosimy o opłacanie składek z góry za dany miesiąc lub kwartał. Kwota ustalona przez Zarząd Okręgu wynosi <strong style="color: #ffffff;"><u>28 zł miesięcznie</u></strong>.
+                    </div>
+                    
+                    <strong style="color: white; font-size: 0.9rem; display: block; margin-bottom: 8px; font-family: 'Open Sans', sans-serif;">Dane do przelewu:</strong>
+                    <div class="bank-box-unified">
+                        Odbiorca:<br>
+                        <strong style="color: #ffffff;">ZHR Okręg Małopolski - Szczep 5 KDH Wichry</strong><br><br>
+                        Numer konta szczepu:<br>
+                        <span class="account-number-bold">02 1020 1026 0000 1702 0470 3791</span><br><br>
+                        Tytuł przelewu:<br>
+                        <span class="account-number-bold" style="color: #ffffff;">„Składki członkowskie – 5 KDH Piorun – imię i nazwisko – miesiąc X–miesiąc Y”</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. DLA HARCERZY -->
+    <section id="dla-harcerzy" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Dla Harcerzy</h2>
+            
+            <div class="scouts-grid">
+                <div class="scouts-card">
+                    <div>
+                        <h3>Stopnie i Sprawności</h3>
+                        
+                        <a href="https://eproba.zhr.pl/" target="_blank" class="eproba-btn">
+                            <img src="logo.png" alt="Logo ZHR" class="eproba-logo-icon">
+                            <span>System ePróba ZHR</span>
+                        </a>
+                        
+                        <a href="https://stamps.zhr.pl/#/" target="_blank" class="stamps-btn">
+                            <span>Elektroniczna Książeczka Sprawności</span>
+                            <span>↗</span>
+                        </a>
+                        
+                        <div class="ksis-info-box">
+                            Chęć zamknięcia Stopni albo Sprawności prosimy zgłaszać do zastępowego lub kadry. Po zebraniu określonej ilości chętnych, na discordzie drużyny zostanie opublikowana informacja o terminie oraz miejscu Komisji Stopni i Sprawności wraz z ankietą zgłoszeniową. Oprócz śródrocznych KSiS-ów, odbywają się one także każdego wieczoru w trakcie zimowisk i obozów letnich.
+                        </div>
+
+                        <a href="#" class="esongbook-btn" onclick="return false;">
+                            <span>eŚpiewnik Pioruna – w trakcie</span>
+                            <span>⚙️</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="scouts-card">
+                    <div>
+                        <h3>Punktacja Zastępowa RH 26/27</h3>
+                        <p style="font-family: 'Open Sans', sans-serif; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; text-align: center; line-height: 1.5;">
+                            W punktację śródroczną wliczają się następujące czynniki: zamknięcie stopni i sprawności przez członków zastępu, punkty uzbierane przez zastęp na akcjach drużyny, procentowa frekwencja zastępu na zbiórkach drużyny, a także częstotliwość i różnorodność zbiórek zastępów.
+                        </p>
+                        
+                        <!-- Kontener generowany dynamicznie przez JS -->
+                        <div class="chart-container" id="patrolChartContainer">
+                            <!-- Wypełniane automatycznie przez skrypt -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="discord-card">
+                <div class="discord-content-left">
+                    <div class="discord-logo-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <div class="discord-text-box">
+                        <h4>Discord Pioruna</h4>
+                        <p>Serwer z informacjami o akcjach drużyny, nowościach, a także czatem ogólnym dla całej harcerskiej społeczności 5 KDH Piorun</p>
+                    </div>
+                </div>
+                <div class="discord-badge">
+                    Zaproszenie u zastępowych
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULARZ ZGŁOSZENIOWY (MODAL) -->
+    <div class="modal" id="recruitModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Zamknij okno">&times;</button>
+            
+            <div id="formContainer">
+                <h3 id="modalTitle" style="color: var(--primary-color); margin-bottom: 15px; text-align: center;">Dołącz do 5 KDH „Piorun”</h3>
+                <p style="font-family: 'Open Sans', sans-serif; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; text-align: center;">
+                    Wypełnij poniższy formularz – Drużynowy skontaktuje się z Tobą telefonicznie lub mailowo!
+                </p>
+                
+                <form id="recruitmentForm" action="https://formsubmit.co/ajax/mateusz.rozkowski@zhr.pl" method="POST">
+                    <input type="hidden" name="_subject" value="Nowe zgłoszenie do 5 KDH Piorun!">
+                    <input type="hidden" name="_captcha" value="false">
+                    
+                    <div aria-hidden="true" style="display:none">
+                        <input type="text" name="_honey" tabindex="-1" autocomplete="off">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputRodzic">Imię i nazwisko rodzica / opiekuna:</label>
+                        <input type="text" id="inputRodzic" name="rodzic" required autocomplete="name" autocapitalize="words" placeholder="np. Anna Kowalska">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDziecko">Imię i wiek / klasa dziecka:</label>
+                        <input type="text" id="inputDziecko" name="dziecko" required autocomplete="off" autocapitalize="words" placeholder="np. Piotrek, klasa 5">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTelefon">Numer telefonu kontaktowego:</label>
+                        <input type="tel" id="inputTelefon" name="telefon" required autocomplete="tel" placeholder="123 456 789">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">Adres e-mail rodzica / opiekuna:</label>
+                        <input type="email" id="inputEmail" name="email_rodzica" required autocomplete="email" placeholder="np. anna.kowalska@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="selectZastep">Preferowany zastęp / szkoła:</label>
+                        <select id="selectZastep" name="zastep">
+                            <option value="dowolny">Nie mam preferencji / Dowolny</option>
+                            <option value="Rysie">Rysie (Katolicka Szkoła Podstawowa im. św. Joanny Beretty Molli)</option>
+                            <option value="Lisy">Lisy (Katolicka Szkoła Podstawowa im. św. Joanny Beretty Molli)</option>
+                            <option value="Rosomaki">Rosomaki (Katolicka Szkoła Podstawowa im. św. Joanny Beretty Molli)</option>
+                            <option value="Komandosi">Komandosi (Katolicka Szkoła Podstawowa im. św. Jadwigi Królowej)</option>
+                            <option value="Zastep-V">Zastęp V (SP nr 153)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputWiadomosc">Dodatkowe pytania / uwagi (opcjonalnie):</label>
+                        <textarea id="inputWiadomosc" name="wiadomosc" rows="3" placeholder="Pytania odnośnie składek, sprzętu itp."></textarea>
+                    </div>
+
+                    <div class="form-checkbox-group">
+                        <input type="checkbox" id="rodo" name="rodo" required>
+                        <label for="rodo" style="font-weight: normal; cursor: pointer; margin-bottom: 0;">
+                            Wyrażam zgodę na przetwarzanie danych osobowych moich i mojego dziecka przez Związek Harcerstwa Rzeczypospolitej (ul. Mokotowska 55, 00-561 Warszawa, działający przez Okręg Małopolski ZHR oraz Hufiec Harcerzy Kraków-Krowodrza) w celu rekrutacji do 5 Krakowskiej Drużyny Harcerzy „Piorun” im. Legionistów roku 1914. Wiem, że podanie danych jest dobrowolne, a zgodę mogę wycofać w każdym momencie, wysyłając e-mail na adres: mateusz.rozkowski@zhr.pl. Zapoznałem/am się z informacją, że mam prawo do dostępu do danych, ich sprostowania oraz usunięcia.
+                        </label>
+                    </div>
+
+                    <p id="formError" class="form-error-msg" role="alert"></p>
+
+                    <button type="submit" class="form-submit-btn" id="submitBtn">Wyślij zgłoszenie</button>
+                </form>
+            </div>
+
+            <!-- Komunikat sukcesu -->
+            <div id="formSuccessMessage" class="form-success-message">
+                <div style="font-size: 3rem; margin-bottom: 10px;">✅</div>
+                <h4 id="successTitle" tabindex="-1" style="outline: none;">Dziękujemy!</h4>
+                <p>Twoje zgłoszenie zostało wysłane. Drużynowy skontaktuje się z Tobą wkrótce.</p>
+                <button type="button" class="form-submit-btn" onclick="closeModal()">Zamknij okno</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- STOPKA Z MAPĄ GOOGLE MAPS -->
     <footer>
         <div class="footer-content">
             <div style="flex: 1; min-width: 300px;">
                 <h3 style="color: var(--primary-color); margin-bottom: 20px;">Nasze Lokalizacje</h3>
                 
-                <div style="margin-bottom: 25px; padding-left: 15px; border-left: 3px solid var(--primary-color);">
-                    <strong style="color: white; display:block; margin-bottom:5px; font-size: 1.1rem;">
-                        SP im. św. Joanny Beretty Molli
+                <div style="margin-bottom: 20px; padding-left: 15px; border-left: 3px solid var(--primary-color);">
+                    <strong style="color: white; display:block; margin-bottom:3px; font-size: 1.05rem;">
+                        Katolicka Szkoła Podstawowa im. św. Joanny Beretty Molli
                     </strong>
-                    <span style="color: var(--primary-color); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
+                    <span style="color: var(--primary-color); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">
                         Główna Harcówka
                     </span><br>
-                    ul. Stelmachów 137<br>
-                    31-349 Kraków
+                    ul. Stelmachów 137, 31-349 Kraków
                 </div>
 
                 <div style="margin-bottom: 20px; padding-left: 15px; border-left: 3px solid #333;">
-                    <strong style="color: #ccc; display:block; margin-bottom:5px;">
-                        SP im. św. Jadwigi Królowej
+                    <strong style="color: #ccc; display:block; margin-bottom:3px;">
+                        Katolicka Szkoła Podstawowa im. św. Jadwigi Królowej
                     </strong>
-                    ul. Władysława Łokietka 60<br>
-                    31-334 Kraków
+                    ul. Władysława Łokietka 60, 31-334 Kraków
                 </div>
 
-                <p style="font-size: 0.9rem; color: #666; margin-top: 20px;">
-                    Wszelkie pytania organizacyjne prosimy kierować bezpośrednio do Drużynowego.
-                </p>
+                <div style="margin-bottom: 20px; padding-left: 15px; border-left: 3px solid #333;">
+                    <strong style="color: #ccc; display:block; margin-bottom:3px;">
+                        SP nr 153 im. ks. prof. Józefa Tischnera
+                    </strong>
+                    ul. Na Błonie 15D, 30-147 Kraków
+                </div>
             </div>
 
             <div style="flex: 1; min-width: 300px;">
-                <div id="map"></div>
-                <p style="text-align: center; font-size: 0.8rem; color: #666; margin-top: 10px;">
-                    Bordowa pinezka: Harcówka Główna (Stelmachów) | Szara: Harcówka Druga (Łokietka)
-                </p>
+                <div style="width: 100%; height: 380px; border-radius: 12px; border: 2px solid #2a2a2a; overflow: hidden; box-shadow: var(--shadow-3d);">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2559.3905094191697!2d19.920611176884386!3d50.10351397152431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165bb4b93196a5%3A0x67db2b704c3e8068!2sStelmach%C3%B3w%20137%2C%2031-349%20Krak%C3%B3w!5e0!3m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; filter: grayscale(100%) invert(92%) contrast(83%);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Katolicka Szkoła Podstawowa im. św. Joanny Beretty Molli">
+                    </iframe>
+                </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>© 2025 5 Krakowska Drużyna Harcerzy "Piorun" im. Legionistów roku 1914 </p>
+            <p>© 2026 5 Krakowska Drużyna Harcerzy „Piorun” im. Legionistów roku 1914</p>
         </div>
     </footer>
 
+    <!-- LIGHTBOX MODAL (ZDJĘCIA) -->
     <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" id="lightbox-close">×</span>
-        <img src="" alt="Powiększenie" class="lightbox-img" id="lightbox-img">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img src="" alt="Powiększenie zdjęcia" class="lightbox-img" id="lightbox-img">
     </div>
 
+    <!-- SKRYPTY LOGIKI STRONY -->
     <script>
+        // --- 1. DYNAMICZNA PUNKTACJA ZASTĘPÓW (AUTOMATYCZNE SORTOWANIE) ---
+        const patrolsData = [
+            { name: "Rysie", color: "#ff4500", score: 37 },
+            { name: "Komandosi", color: "#00bfff", score: 17 },
+            { name: "Rosomaki", color: "#8B4513", score: 34 },
+            { name: "Lisy", color: "#2e8b57", score: 30 },
+            { name: "Zastęp V", color: "#8a2be2", score: 19 }
+        ];
+
+        function renderPatrolChart() {
+            const sorted = [...patrolsData].sort((a, b) => b.score - a.score);
+            const maxScore = sorted[0].score;
+            const container = document.getElementById('patrolChartContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            sorted.forEach((patrol, index) => {
+                const rank = index + 1;
+                const diff = patrol.score - sorted[0].score;
+                const percent = Math.round((patrol.score / maxScore) * 100);
+
+                let rankClass = '';
+                if (rank === 1) rankClass = 'rank-1';
+                else if (rank === 2) rankClass = 'rank-2';
+                else if (rank === 3) rankClass = 'rank-3';
+
+                const row = document.createElement('div');
+                row.className = `chart-row ${rankClass}`;
+
+                let diffHtml = '';
+                if (diff < 0) {
+                    diffHtml = `<span class="chart-diff">−${Math.abs(diff)}</span>`;
+                }
+
+                row.innerHTML = `
+                    <div class="chart-rank">${rank}</div>
+                    <div class="chart-info-col">
+                        <div class="chart-meta-row">
+                            <div class="chart-patrol-info">
+                                <span class="patrol-dot" style="background-color: ${patrol.color};"></span>
+                                <span>${patrol.name}</span>
+                            </div>
+                            <div class="chart-score-info">
+                                ${diffHtml}
+                                <span>${patrol.score} pkt</span>
+                            </div>
+                        </div>
+                        <div class="chart-bar-bg">
+                            <div class="chart-bar-fill ${rank === 1 ? 'bar-leader' : 'bar-rest'}" style="width: ${percent}%;"></div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', renderPatrolChart);
+
+        // --- 2. MENU MOBILNE (HAMBURGER) ---
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        function setMenu(open) {
+            if (open) {
+                navLinks.classList.add('mobile-open');
+                hamburgerBtn.setAttribute('aria-expanded', 'true');
+                hamburgerBtn.setAttribute('aria-label', 'Zamknij menu');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.className = 'fa-solid fa-xmark';
+            } else {
+                navLinks.classList.remove('mobile-open');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                hamburgerBtn.setAttribute('aria-label', 'Otwórz menu');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.className = 'fa-solid fa-bars';
+            }
+        }
+
+        hamburgerBtn.addEventListener('click', () => {
+            const isOpen = navLinks.classList.contains('mobile-open');
+            setMenu(!isOpen);
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                setMenu(false);
+            });
+        });
+
+        // --- 3. ZAKŁADKI PROGRAMU ---
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.program-tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.program-tab-btn').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById('tab-' + tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function scrollToContactAndOpenModal() {
+            const contactSection = document.getElementById('kadra');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            setTimeout(() => {
+                openModal();
+            }, 600);
+        }
+
+        // --- 4. MODAL ZGŁOSZENIOWY I FOCUS TRAP ---
+        let lastFocus = null;
+        const modal = document.getElementById('recruitModal');
+
+        function openModal() {
+            lastFocus = document.activeElement;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            document.getElementById('inputRodzic').focus();
+        }
+
+        function closeModal() {
+            if (modal.style.display !== 'flex') return;
+            
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            if (lastFocus && typeof lastFocus.focus === 'function') {
+                lastFocus.focus({ preventScroll: true });
+            }
+
+            setTimeout(() => {
+                document.getElementById('formContainer').style.display = 'block';
+                document.getElementById('formSuccessMessage').style.display = 'none';
+                document.getElementById('recruitmentForm').reset();
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('submitBtn').textContent = 'Wyślij zgłoszenie';
+                const errEl = document.getElementById('formError');
+                errEl.style.display = 'none';
+                errEl.textContent = '';
+            }, 300);
+        }
+
+        modal.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (modal.style.display === 'flex') {
+                    closeModal();
+                }
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                }
+                if (navLinks.classList.contains('mobile-open')) {
+                    setMenu(false);
+                }
+            }
+        });
+
+        window.onclick = function(e) {
+            if (e.target === modal) closeModal();
+        }
+
+        const recruitmentForm = document.getElementById('recruitmentForm');
+        recruitmentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            const errEl = document.getElementById('formError');
+            
+            errEl.style.display = 'none';
+            errEl.textContent = '';
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Wysyłanie...';
+
+            const formData = new FormData(recruitmentForm);
+
+            fetch(recruitmentForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('formContainer').style.display = 'none';
+                    document.getElementById('formSuccessMessage').style.display = 'block';
+                    document.getElementById('successTitle').focus();
+                } else {
+                    errEl.textContent = 'Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie lub skontaktuj się bezpośrednio z drużynowym.';
+                    errEl.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Wyślij zgłoszenie';
+                }
+            }).catch(error => {
+                errEl.textContent = 'Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.';
+                errEl.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Wyślij zgłoszenie';
+            });
+        });
+
+        const sections = document.querySelectorAll('section, header.hero');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const scrollPos = window.scrollY + 200;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active-nav');
+                }
+            });
+        });
+
         const galleryItems = document.querySelectorAll('.gallery-item img');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
@@ -708,51 +2465,13 @@
 
         galleryItems.forEach(item => {
             item.addEventListener('click', () => {
-                const imgSrc = item.getAttribute('src');
-                lightboxImg.setAttribute('src', imgSrc);
+                lightboxImg.setAttribute('src', item.getAttribute('src'));
                 lightbox.classList.add('active');
             });
         });
 
-        lightboxClose.addEventListener('click', () => { lightbox.classList.remove('active'); });
+        lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
-    </script>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script>
-        // Inicjalizacja mapy (środek pomiędzy szkołami)
-        var map = L.map('map').setView([50.100, 19.925], 14);
-
-        // Dodanie warstwy ciemnej mapy (CartoDB Dark Matter)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-            subdomains: 'abcd',
-            maxZoom: 19
-        }).addTo(map);
-
-        // Funkcja tworząca kolorową ikonę SVG
-        function createColorIcon(color) {
-            return L.divIcon({
-                className: 'custom-pin',
-                html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="${color}"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5" fill="rgba(0,0,0,0.3)"/></svg>`,
-                iconSize: [36, 36],
-                iconAnchor: [18, 36],
-                popupAnchor: [0, -36]
-            });
-        }
-
-        // Definicja kolorów
-        var maroonIcon = createColorIcon('#9e1b1b'); // Bordowy
-        var grayIcon = createColorIcon('#777777');   // Szary
-
-        // Pinezka 1: SP Beretty Molli (Bordowa - Główna)
-        L.marker([50.1035, 19.9228], {icon: maroonIcon}).addTo(map)
-            .bindPopup("<b>SP im. św. Joanny Beretty Molli</b><br>Główna Harcówka");
-
-        // Pinezka 2: SP Jadwigi Królowej (Szara - Druga)
-        L.marker([50.0925, 19.9285], {icon: grayIcon}).addTo(map)
-            .bindPopup("<b>SP im. św. Jadwigi Królowej</b><br>Harcówka 2");
     </script>
 </body>
 </html>
-
